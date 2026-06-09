@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devartka Mahar & Bunga - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav id="navbar" class="fixed w-full z-[999] transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center bg-white/90 md:bg-transparent">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold font-serif text-deep-pink tracking-widest">DEVARTKA</span>
+        </div>
+        
+        <div class="hidden md:flex items-center">
+            <ul class="flex gap-8 font-medium text-sm tracking-wide uppercase">
+                <li><a href="home.html" class="text-deep-pink font-semibold hover:text-deep-pink transition-colors">Home</a></li>
+                <li><a href="produk.html" class="text-gray-600 hover:text-deep-pink transition-colors">Produk</a></li>
+                <li><a href="rekomendasi.html" class="text-gray-600 hover:text-deep-pink transition-colors">Rekomendasi</a></li>
+                <li><a href="profile.html" class="text-gray-600 hover:text-deep-pink transition-colors">Tentang Kami</a></li>
+                <li><a href="index.html" class="text-red-500 hover:text-red-700 transition-colors" title="Keluar"><i class="fa-solid fa-sign-out-alt"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen hero-pattern flex flex-col items-center justify-center pt-20 px-6 overflow-hidden relative">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left z-10">
+                <h4 class="text-deep-pink font-medium tracking-[0.3em] mb-4 uppercase text-sm italic">Bunga Dari Hati</h4>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Selamat Datang di <br><span class="text-deep-pink">Devartka Mahar</span></h1>
+                <p class="text-gray-500 max-w-md mb-8 leading-relaxed">
+                    Menyediakan berbagai buket bunga, buket uang, snack, dan mahar eksklusif yang dirancang khusus untuk momen istimewa Anda.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="produk.html" class="btn-primary px-8 py-4 rounded-full font-semibold shadow-lg flex items-center justify-center gap-2 text-center">
+                        Lihat Produk <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 relative mt-16 md:mt-0 flex justify-center">
+                <div class="relative w-full max-w-lg">
+                    <div class="rounded-full bg-white p-4 shadow-2xl relative z-10 flower-float">
+                         <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Buket Bunga" class="rounded-full w-full aspect-square object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-serif text-3xl mb-4 tracking-widest text-pink-400">DEVARTKA</h2>
+            <p class="text-gray-400 text-sm mb-8 italic">"Menyulap momen menjadi kenangan abadi"</p>
+            <div class="w-full h-px bg-gray-800 mb-8"></div>
+            <p class="text-gray-500 text-xs">&copy; 2026 Devartka Mahar & Bunga. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

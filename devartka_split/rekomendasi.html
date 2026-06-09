@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asisten Pintar Rekomendasi - Devartka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center bg-white border-b border-pink-50">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold font-serif text-deep-pink tracking-widest">DEVARTKA</span>
+        </div>
+        <ul class="hidden md:flex gap-8 font-medium text-sm tracking-wide uppercase">
+            <li><a href="home.html" class="text-gray-600 hover:text-deep-pink transition-colors">Home</a></li>
+            <li><a href="produk.html" class="text-gray-600 hover:text-deep-pink transition-colors">Produk</a></li>
+            <li><a href="rekomendasi.html" class="text-deep-pink font-semibold hover:text-deep-pink transition-colors">Rekomendasi</a></li>
+            <li><a href="profile.html" class="text-gray-600 hover:text-deep-pink transition-colors">Tentang Kami</a></li>
+            <li><a href="index.html" class="text-red-500 hover:text-red-700 transition-colors" title="Keluar"><i class="fa-solid fa-sign-out-alt"></i></a></li>
+        </ul>
+    </nav>
+
+    <section class="pt-32 pb-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h4 class="text-deep-pink font-medium tracking-[0.2em] uppercase text-xs mb-2">Asisten Pintar</h4>
+                <h2 class="font-serif text-4xl font-bold text-dark">Butuh Saran Kado?</h2>
+                <div class="w-12 h-1 bg-deep-pink mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                
+                <div class="lg:w-1/2 w-full bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-pink-50">
+                    <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                        Pilih kriteria penerima, anggaran, dan jenis isi kado di bawah ini. Algoritma asisten kami akan langsung menyaring produk dan merekomendasikan pilihan terbaik.
+                    </p>
+
+                    <form id="recommendationForm" onsubmit="getRecommendation(event)" class="space-y-6">
+                        
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">1. Tema Acara:</label>
+                            <select id="eventTheme" required class="w-full bg-gray-50 border border-gray-200 focus:border-deep-pink rounded-xl px-4 py-3 text-sm focus:outline-none text-gray-700 transition-colors">
+                                <option value="" disabled selected>Pilih Tema Acara...</option>
+                                <option value="wisuda">Wisuda / Kelulusan</option>
+                                <option value="pernikahan">Pernikahan</option>
+                                <option value="ulang_tahun">Ulang Tahun</option>
+                                <option value="valentine">Valentine / Anniversary</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">2. Budget / Anggaran:</label>
+                            <select id="budgetRange" required class="w-full bg-gray-50 border border-gray-200 focus:border-deep-pink rounded-xl px-4 py-3 text-sm focus:outline-none text-gray-700 transition-colors">
+                                <option value="" disabled selected>Pilih Jangkauan Budget...</option>
+                                <option value="under_150">&lt; Rp 150rb</option>
+                                <option value="150_300">Rp 150rb - 300rb</option>
+                                <option value="300_500">Rp 300rb - 500rb</option>
+                                <option value="above_500">&gt; Rp 500rb</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">3. Preferensi Isi:</label>
+                            <select id="giftPreference" required class="w-full bg-gray-50 border border-gray-200 focus:border-deep-pink rounded-xl px-4 py-3 text-sm focus:outline-none text-gray-700 transition-colors">
+                                <option value="" disabled selected>Pilih Preferensi Isi...</option>
+                                <option value="bunga">Bunga</option>
+                                <option value="uang">Uang</option>
+                                <option value="snack">Snack & Kustom</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full bg-deep-pink text-white py-4 rounded-xl font-bold hover:bg-[#ad144d] transition-all shadow-md text-sm uppercase tracking-wider mt-4">
+                            Dapatkan Rekomendasi
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:w-1/2 w-full lg:sticky lg:top-32" id="recommendationResult">
+                    <div class="bg-white p-12 rounded-[2.5rem] border-4 border-dashed border-pink-100 text-center shadow-sm">
+                        <div class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles text-3xl text-deep-pink"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-dark font-serif">Tentukan Preferensimu</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">
+                            Pilih jenis acara, anggaran, dan bahan kado di form sebelah kiri untuk menampilkan rekomendasi istimewa kami.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-serif text-3xl mb-4 tracking-widest text-pink-400">DEVARTKA</h2>
+            <p class="text-gray-400 text-sm mb-8 italic">"Menyulap momen menjadi kenangan abadi"</p>
+            <div class="w-full h-px bg-gray-800 mb-8"></div>
+            <p class="text-gray-500 text-xs">&copy; 2026 Devartka. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Logika fungsi simulasi pencarian rekomendasi oleh Asisten Pintar
+        function getRecommendation(event) {
+            event.preventDefault();
+            
+            const theme = document.getElementById('eventTheme').value;
+            const budget = document.getElementById('budgetRange').value;
+            const pref = document.getElementById('giftPreference').value;
+            const resultDiv = document.getElementById('recommendationResult');
+
+            // Data simulasi database produk pencocokan pintar
+            let recTitle = "Sweet Rose Bouquet";
+            let recPrice = 150000;
+            let imgUrl = "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+
+            if (pref === "uang") {
+                recTitle = "Premium Money Bouquet";
+                recPrice = 250000;
+                imgUrl = "https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+            } else if (theme === "pernikahan" || budget === "above_500") {
+                recTitle = "Rustic Wedding Mahar";
+                recPrice = 500000;
+                imgUrl = "https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+            } else if (pref === "snack") {
+                recTitle = "Custom Snack Chocolate Tower";
+                recPrice = 120000;
+                imgUrl = "https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+            }
+
+            // Ganti panel kanan secara real-time menjadi bentuk kartu produk terbaik
+            resultDiv.innerHTML = `
+                <div class="bg-white p-6 rounded-[2rem] shadow-md border border-pink-100 animate-fade-in">
+                    <div class="overflow-hidden rounded-2xl h-64 mb-6">
+                        <img src="${imgUrl}" alt="${recTitle}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left mb-6">
+                        <span class="bg-pink-100 text-deep-pink text-[10px] uppercase font-bold px-3 py-1 rounded-full tracking-wider">Rekomendasi Terbaik</span>
+                        <h3 class="text-2xl font-bold mt-2 text-dark font-serif">${recTitle}</h3>
+                        <p class="text-deep-pink font-extrabold text-xl mt-1">Rp ${recPrice.toLocaleString('id-ID')}</p>
+                    </div>
+                    <a href="produk.html" class="w-full bg-deep-pink text-white py-4 rounded-xl font-bold shadow-md flex items-center justify-center gap-2 hover:bg-[#ad144d] transition-all text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-shopping-bag"></i> Lihat di Halaman Produk
+                    </a>
+                </div>
+            `;
+
+            // Scroll mulus ke elemen hasil jika dibuka di handphone / mobile view
+            if (window.innerWidth < 1024) {
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
